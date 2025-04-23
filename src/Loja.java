@@ -15,7 +15,7 @@ public class Loja {
         boolean continuar = true;
 
         while (continuar) {
-            System.out.println("(1)Empregar funcionario" +
+            System.out.println("\n(1)Empregar funcionario" +
                     "\n(2)Cadastrar cliente" +
                     "\n(3)Cadastrar fornecedor" +
                     "\n(4)Demitir funcionario" +
@@ -71,29 +71,31 @@ public class Loja {
                     empregarFuncionario(nome, endereco, telefone, cpf, sexo, ec, matricula, sal, cargo);
                     break;
                 case 2:
-                    System.out.println("Renda: ");
+                    System.out.print("Renda: ");
                     renda = sc.nextDouble();
                     sc.nextLine();
-                    System.out.println("Interesses: ");
+                    System.out.print("Interesses: ");
                     interesses = sc.nextLine();
-                    System.out.println("Profissao: ");
+                    System.out.print("Profissao: ");
                     profissao = sc.nextLine();
 
                     cadastrarCliente(nome, endereco, telefone, cpf, sexo, ec, renda, interesses, profissao);
                     break;
                 case 3:
-                    System.out.println("Produtos: ");
+                    System.out.print("Produtos: ");
                     produtos = sc.nextLine();
 
                     cadastrarFornecedor(nome, endereco, telefone, cnpj, rs, produtos);
                     break;
                 case 4:
-                    System.out.println("Demitir funcionario:");
-                    for (Funcionario f : funcionarios) {
-                        System.out.println(funcionarios.indexOf(f) + " " + f.getNome());
+                    if (!funcionarios.isEmpty()) {
+                        System.out.println("Demitir funcionario:");
+                        for (Funcionario f : funcionarios) {
+                            System.out.println("(" + (funcionarios.indexOf(f) + 1) + ") " + f.getNome());
+                        }
+                        int indice = sc.nextInt() - 1;
+                        demitirFuncionario(funcionarios.get(indice));
                     }
-                    int indice = sc.nextInt();
-                    demitirFuncionario(funcionarios.get(indice));
                     break;
                 case 5:
                     System.out.println("Lista de funcionarios:");
@@ -140,18 +142,21 @@ public class Loja {
     public static void listarFuncionarios() {
         for (Funcionario f : funcionarios) {
             System.out.println(f);
+            System.out.println();
         }
     }
 
     public static void listarClientes() {
         for (Cliente c : clientes) {
             System.out.println(c);
+            System.out.println();
         }
     }
 
     public static void listarFornecedores() {
         for (Fornecedor f : fornecedores) {
             System.out.println(f);
+            System.out.println();
         }
     }
 }
